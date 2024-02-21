@@ -1,6 +1,7 @@
 package cl.ucn.disc.as.Services;
 
 import cl.ucn.disc.as.model.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
 import java.util.List;
@@ -36,20 +37,18 @@ public interface Sistema {
     /**
      * @param dueño a agregar
      * @param departamento a agregar
-     * @param fechaGastos a agregar
      * @param contrato a agregar
      * @return
      */
-    public Contrato addContrato(Persona dueño, Depto departamento, Date fechaGastos, Contrato contrato);
+    public Contrato addContrato(Persona dueño, Depto departamento, Contrato contrato);
 
     /**
      * @param dueñoID a agregar
      * @param departamento a agregar
-     * @param fechaGastos a agregar
      * @param contrato a agregar
      * @return
      */
-    public Contrato addContrato(Long dueñoID, Depto departamento, Date fechaGastos, Contrato contrato);
+    public Contrato addContrato(Long dueñoID, Depto departamento, Contrato contrato);
 
     /**
      * @param pago a agregar

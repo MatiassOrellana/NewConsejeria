@@ -2,7 +2,6 @@ package cl.ucn.disc.as.Services;
 
 import cl.ucn.disc.as.model.*;
 import io.ebean.Database;
-import io.ebean.PersistenceIOException;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,6 +25,9 @@ public class SistemaIMPL implements Sistema{
 
     private List<Edificio> edificios;
 
+    /**
+     * The database
+     */
     private final Database database;
 
     public SistemaIMPL(Database database) {
@@ -33,42 +35,42 @@ public class SistemaIMPL implements Sistema{
     }
 
     @Override
-    public Edificio addEdificio(Edificio edificio) {
+    public Edificio addEdificio(@NotNull Edificio edificio) {
         return null;
     }
 
     @Override
-    public Persona addPersona(Persona persona) {
+    public Persona addPersona(@NotNull Persona persona) {
         return null;
     }
 
     @Override
-    public Depto addDepto(Depto departamento, Edificio edificio) {
+    public Depto addDepto(@NotNull Depto departamento,@NotNull Edificio edificio) {
         return null;
     }
 
     @Override
-    public Depto addDepto(Depto departamento, Long idEdificio) {
+    public Depto addDepto(@NotNull Depto departamento,@NotNull Long idEdificio) {
         return null;
     }
 
     @Override
-    public Contrato addContrato(Persona dueño, Depto departamento, Date fechaGastos, Contrato contrato) {
+    public Contrato addContrato(@NotNull Persona dueño, @NotNull Depto departamento, @NotNull Contrato contrato) {
         return null;
     }
 
     @Override
-    public Contrato addContrato(Long dueñoID, Depto departamento, Date fechaGastos, Contrato contrato) {
+    public Contrato addContrato(@NotNull Long dueñoID, @NotNull Depto departamento, @NotNull Contrato contrato) {
         return null;
     }
 
     @Override
-    public Pago addPago(Pago pago, Contrato contrato) {
+    public Pago addPago(@NotNull Pago pago, @NotNull Contrato contrato) {
         return null;
     }
 
     @Override
-    public Pago addPago(Pago pago, Long contratoID) {
+    public Pago addPago(@NotNull Pago pago, @NotNull Long contratoID) {
         return null;
     }
 }
