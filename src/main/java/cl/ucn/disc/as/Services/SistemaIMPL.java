@@ -71,7 +71,7 @@ public class SistemaIMPL implements Sistema{
 
     @Override
     public Contrato addContrato(@NotNull Long dueñoID, @NotNull Depto departamento, @NotNull Contrato contrato) {
-        departamento.setContratoID(contrato.getId());
+
         contrato.setDueñoID(dueñoID);
         this.database.save(contrato);
         return contrato;
@@ -79,7 +79,7 @@ public class SistemaIMPL implements Sistema{
 
     @Override
     public Pago addPago(@NotNull Pago pago, @NotNull Contrato contrato) {
-        pago.setContrato(contrato);
+        contrato.getPagos().add(pago);
         this.database.save(pago);
         return pago;
     }
