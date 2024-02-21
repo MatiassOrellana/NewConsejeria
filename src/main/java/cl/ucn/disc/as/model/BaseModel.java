@@ -22,37 +22,31 @@ import java.time.Instant;
  */
 @ToString
 @MappedSuperclass
+@Getter
+@Setter
 public abstract class BaseModel {
 
     /**
      * The Id.
      */
-    @Getter
-    @Setter
     @Id
     private Long id;
 
     /**
      * The Version.
      */
-    @Getter
-    @Setter
     @Version
     private Long version;
 
     /**
      * Creation date.
      */
-    @Getter
-    @Setter
     @WhenCreated
     private Instant created;
 
     /**
      * Modified date.
      */
-    @Getter
-    @Setter
     @WhenModified
     private Instant modified;
 

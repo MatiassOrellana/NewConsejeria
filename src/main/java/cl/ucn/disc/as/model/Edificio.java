@@ -18,7 +18,11 @@ import javax.persistence.Entity;
 @Setter
 public class Edificio {
 
-
+    /**
+     * The RUT.
+     */
+    @NotNull
+    private Integer rut;
 
 
 }
