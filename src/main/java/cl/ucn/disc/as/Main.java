@@ -29,6 +29,7 @@ public class Main {
     public static Edificio EdificioBuilder(String nombre, String direccion){
 
         return Edificio.builder().nombre(nombre).direccion(direccion).build();
+
     }
 
     public static Persona PersonaBuilder(String rut, String nombre, String apellidos, String email, String telefono){
@@ -76,10 +77,6 @@ public class Main {
         Edificio edificio1 = EdificioBuilder("calipso", "Enrique segoviano");
         Edificio edificio2 = EdificioBuilder("y2", "av. jorge gonzalez 301");
 
-        log.debug("edificio before dc: {}",edificio);
-        log.debug("edificio before dc: {}",edificio1);
-        log.debug("edificio before dc: {}",edificio2);
-
         edificio = sistema.addEdificio(edificio);
         edificio1 = sistema.addEdificio(edificio1);
         edificio2 = sistema.addEdificio(edificio2);
@@ -95,11 +92,14 @@ public class Main {
 
         /* Se han agregado objetos
         donde se escribe el builder y con el builder se van añadiendo cada parametro
-        con ese parametro termina en .build
-        **/
+        con ese parametro termina en .build**/
+
 
         Persona persona1 = PersonaBuilder("20040819-5", "Matias", "Orellana Hormazabal", "matias.orellana@alumnos.ucn.cl", "+56213671283");
         Persona persona2 = PersonaBuilder("20416699-4", "Oscar", "Laura Hurtado", "oscarLauraH@gmail.com", "+56245465466");
+
+        persona1 = sistema.addPersona(persona1);
+        persona2 = sistema.addPersona(persona2);
 
         Depto depto1 = DeptoBuilder("01", "1", edificio);
         Depto depto2 = DeptoBuilder("02", "1", edificio);
