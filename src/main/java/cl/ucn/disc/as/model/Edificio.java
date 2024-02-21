@@ -16,7 +16,7 @@ import javax.persistence.Entity;
 @Entity
 @Getter
 @Setter
-public class Edificio extends BaseModel{
+public class Edificio extends BaseModel {
 
     /**
      * The Nombre.

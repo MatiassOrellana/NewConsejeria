@@ -17,7 +17,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class Pago extends BaseModel{
+public class Pago extends BaseModel {
 
     /**
      * The fecha.
