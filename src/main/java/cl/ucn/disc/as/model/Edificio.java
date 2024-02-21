@@ -4,6 +4,7 @@ import io.ebean.annotation.NotNull;
 import lombok.*;
 
 import javax.persistence.Entity;
+import java.util.List;
 
 /**
  * The Edificio class.
@@ -30,5 +31,10 @@ public class Edificio extends BaseModel {
     @NotNull
     private String direccion;
 
+    /**
+     * The Edificios.
+     */
+    @NotNull
+    private List<Edificio> edificios;
 
 }

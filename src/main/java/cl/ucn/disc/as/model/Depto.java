@@ -49,6 +49,4 @@ public class Depto extends BaseModel{
 
     private Long contratoID;
 
-    private Contrato contrato;
-
 }

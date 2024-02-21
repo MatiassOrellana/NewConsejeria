@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import java.util.Date;
+import java.util.List;
 
 /**
  * The Edificio class.
@@ -31,7 +32,10 @@ public class Contrato extends BaseModel{
     @NotNull
     private Long dueñoID;
 
+    /**
+     * The Pagos.
+     */
     @NotNull
-    private Persona dueño;
+    private List<Pago> pagos;
 
 }

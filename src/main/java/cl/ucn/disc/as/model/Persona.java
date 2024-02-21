@@ -8,6 +8,7 @@ import io.ebean.annotation.NotNull;
 import lombok.*;
 
 import javax.persistence.Entity;
+import java.util.List;
 
 /**
  * The Persona class.
@@ -60,4 +61,11 @@ public class Persona extends BaseModel {
 
     @NotNull
     private int tipo;
+
+    /**
+     * The Contrato
+     */
+    @NotNull
+    private List<Contrato> contratos;
+
 }
