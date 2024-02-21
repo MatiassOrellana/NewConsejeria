@@ -5,7 +5,7 @@
 package cl.ucn.disc.as.dao;
 
 import cl.ucn.disc.as.model.Persona;
-import cl.ucn.disc.as.model.query.QPersona;
+//import cl.ucn.disc.as.model.query.QPersona;
 import io.ebean.Finder;
 import org.jetbrains.annotations.NotNull;
 
@@ -32,7 +32,8 @@ public class PersonaFinder extends Finder<Long, Persona> {
      * @param rut to use.
      * @return the Persona.
      */
+    /**
     public Optional<Persona> byRut(@NotNull Integer rut) {
         return new QPersona().rut.eq(rut).findOneOrEmpty();
-    }
+    }*/
 }
