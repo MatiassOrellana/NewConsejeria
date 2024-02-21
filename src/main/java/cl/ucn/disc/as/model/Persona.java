@@ -27,7 +27,7 @@ public class Persona extends BaseModel {
      * The RUT.
      */
     @NotNull
-    private Integer rut;
+    private String rut;
 
     /**
      * The Nombre.
