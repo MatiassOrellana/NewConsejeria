@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 /**
  * The Edificio class.
  *
- * @author Diego Urrutia-Astorga.
+ * @author Matias Orellana.
  */
 @ToString(callSuper = true)
 @AllArgsConstructor
