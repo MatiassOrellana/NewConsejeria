@@ -21,14 +21,6 @@ import java.util.Date;
 @Setter
 public class Depto extends BaseModel{
 
-    /**
-     * The Edificio ID.
-     */
-    @NotNull
-    private Long IDEdificio;
-
-    @NotNull
-    private Edificio edificio;
 
     /**You want merge the numbers, not add*/
     /**
@@ -48,5 +40,12 @@ public class Depto extends BaseModel{
      */
 
     private Long contratoID;
+
+    /**
+     * The Edificio ID.
+     */
+    @NotNull
+    private Long IDEdificio;
+
 
 }

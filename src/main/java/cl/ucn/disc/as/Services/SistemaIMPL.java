@@ -48,7 +48,7 @@ public class SistemaIMPL implements Sistema{
 
     @Override
     public Depto addDepto(@NotNull Depto departamento,@NotNull Edificio edificio) {
-        edificio.get
+        edificio.getDeptos().add(departamento);
         this.database.save(departamento);
         return departamento;
     }
@@ -62,8 +62,9 @@ public class SistemaIMPL implements Sistema{
 
     @Override
     public Contrato addContrato(@NotNull Persona dueño, @NotNull Depto departamento, @NotNull Contrato contrato) {
-        departamento.setContrato(contrato);
-        contrato.setDueño(dueño);
+        dueño.getContratos().add(contrato);
+        if (dueño.getTipo() == 2){ dueño.setTipo(1);}
+        contrato.getDeptos().add(departamento);
         this.database.save(contrato);
         return contrato;
     }

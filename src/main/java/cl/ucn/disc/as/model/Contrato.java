@@ -38,4 +38,10 @@ public class Contrato extends BaseModel{
     @NotNull
     private List<Pago> pagos;
 
+    /**
+     * The Deptos.
+     */
+    @NotNull
+    private List<Depto> deptos;
+
 }
