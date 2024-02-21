@@ -35,7 +35,10 @@ public class Pago extends BaseModel {
      * The Contrato ID.
      */
     @NotNull
-    private int contratoID;
+    private Long contratoID;
+
+    @NotNull
+    private Contrato contrato;
 
 
 }

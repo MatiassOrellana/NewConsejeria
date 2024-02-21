@@ -36,22 +36,28 @@ public class SistemaIMPL implements Sistema{
 
     @Override
     public Edificio addEdificio(@NotNull Edificio edificio) {
-        return null;
+        this.database.save(edificio);
+        return edificio;
     }
 
     @Override
     public Persona addPersona(@NotNull Persona persona) {
-        return null;
+        this.database.save(persona);
+        return persona;
     }
 
     @Override
     public Depto addDepto(@NotNull Depto departamento,@NotNull Edificio edificio) {
-        return null;
+        departamento.setEdificio(edificio);
+        this.database.save(departamento);
+        return departamento;
     }
 
     @Override
     public Depto addDepto(@NotNull Depto departamento,@NotNull Long idEdificio) {
-        return null;
+        departamento.setIDEdificio(idEdificio);
+        this.database.save(departamento);
+        return departamento;
     }
 
     @Override

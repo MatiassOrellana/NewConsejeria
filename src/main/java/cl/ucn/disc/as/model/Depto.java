@@ -25,7 +25,10 @@ public class Depto extends BaseModel{
      * The Edificio ID.
      */
     @NotNull
-    private int IDEdificio;
+    private Long IDEdificio;
+
+    @NotNull
+    private Edificio edificio;
 
     /**You want merge the numbers, not add*/
     /**
@@ -44,6 +47,8 @@ public class Depto extends BaseModel{
      * The Contrato, the depto can or not have a contract.
      */
 
-    private int contratoID;
+    private Long contratoID;
+
+    private Contrato contrato;
 
 }
