@@ -29,6 +29,6 @@ public class Contrato extends BaseModel{
      * The Dueño.
      */
     @NotNull
-    private int IDDueño;
+    private int dueñoID;
 
 }
