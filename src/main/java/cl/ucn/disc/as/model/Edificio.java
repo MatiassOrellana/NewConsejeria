@@ -35,6 +35,6 @@ public class Edificio extends BaseModel {
      * The Edificios.
      */
     @NotNull
-    private List<Edificio> edificios;
+    private List<Depto> deptos;
 
 }

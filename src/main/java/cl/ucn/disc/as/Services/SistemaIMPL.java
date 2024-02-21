@@ -48,7 +48,7 @@ public class SistemaIMPL implements Sistema{
 
     @Override
     public Depto addDepto(@NotNull Depto departamento,@NotNull Edificio edificio) {
-        departamento.setEdificio(edificio);
+        edificio.get
         this.database.save(departamento);
         return departamento;
     }
