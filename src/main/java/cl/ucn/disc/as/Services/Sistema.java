@@ -1,9 +1,6 @@
 package cl.ucn.disc.as.Services;
 
-import cl.ucn.disc.as.model.Contrato;
-import cl.ucn.disc.as.model.Depto;
-import cl.ucn.disc.as.model.Edificio;
-import cl.ucn.disc.as.model.Persona;
+import cl.ucn.disc.as.model.*;
 
 import java.util.Date;
 import java.util.List;
@@ -54,8 +51,20 @@ public interface Sistema {
      */
     public Contrato addContrato(Long dueñoID, Depto departamento, Date fechaGastos, Contrato contrato);
 
+    /**
+     * @param pago a agregar
+     * @param contrato a agregar
+     * @return
+     */
+    public Pago addPago(Pago pago, Contrato contrato);
 
-    public List<Persona> getPersonas();
+    /**
+     * @param pago a agregar
+     * @param contratoID a agregar
+     * @return
+     */
+    public Pago addPago(Pago pago, Long contratoID);
+
 }
 
 
