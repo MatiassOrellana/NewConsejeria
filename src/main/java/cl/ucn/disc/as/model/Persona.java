@@ -5,9 +5,7 @@
 package cl.ucn.disc.as.model;
 
 import io.ebean.annotation.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
 
@@ -20,6 +18,8 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 @Builder
 @Entity
+@Getter
+@Setter
 public class Persona extends BaseModel {
 
     /**
@@ -52,4 +52,12 @@ public class Persona extends BaseModel {
     @NotNull
     private String telefono;
 
+    /**
+     * The Tipo.
+     * 1 = dueño
+     * 2 = otro
+     */
+
+    @NotNull
+    private int tipo;
 }
