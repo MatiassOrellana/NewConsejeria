@@ -62,21 +62,31 @@ public class SistemaIMPL implements Sistema{
 
     @Override
     public Contrato addContrato(@NotNull Persona dueño, @NotNull Depto departamento, @NotNull Contrato contrato) {
-        return null;
+        departamento.setContrato(contrato);
+        contrato.setDueño(dueño);
+        this.database.save(contrato);
+        return contrato;
     }
 
     @Override
     public Contrato addContrato(@NotNull Long dueñoID, @NotNull Depto departamento, @NotNull Contrato contrato) {
-        return null;
+        departamento.setContratoID(contrato.getId());
+        contrato.setDueñoID(dueñoID);
+        this.database.save(contrato);
+        return contrato;
     }
 
     @Override
     public Pago addPago(@NotNull Pago pago, @NotNull Contrato contrato) {
-        return null;
+        pago.setContrato(contrato);
+        this.database.save(pago);
+        return pago;
     }
 
     @Override
     public Pago addPago(@NotNull Pago pago, @NotNull Long contratoID) {
-        return null;
+        pago.setContratoID(contratoID);
+        this.database.save(pago);
+        return pago;
     }
 }
