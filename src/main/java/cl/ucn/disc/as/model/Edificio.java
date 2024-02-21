@@ -16,13 +16,19 @@ import javax.persistence.Entity;
 @Entity
 @Getter
 @Setter
-public class Edificio {
+public class Edificio extends BaseModel{
 
     /**
-     * The RUT.
+     * The Nombre.
      */
     @NotNull
-    private Integer rut;
+    private String nombre;
+
+    /**
+     * The Direccion.
+     */
+    @NotNull
+    private String direccion;
 
 
 }
