@@ -51,16 +51,18 @@ public class Main {
 
     }
 
-    public static Contrato ContratoBuilder(Persona dueño){
+    public static Contrato ContratoBuilder(Persona dueño, Depto depto, Sistema sis){
 
-        Date actual = DateTime.now().toDate();
-        return Contrato.builder().fechaDeContrato(actual).dueñoID(dueño.getId()).build();
+        Long IDDueño = dueño.getId();
+        Date actual = LocalDate.now().toDate();
+        Contrato contrato = Contrato.builder().fechaDeContrato(actual).dueñoID(dueño.getId()).build();
+        return sis.addContrato(IDDueño, depto, contrato);
 
     }
 
     public static Pago PagoBuilder(Double monto, Contrato contrato){
 
-        Date actual = DateTime.now().toDate();
+        Date actual = LocalDate.now().toDate();
         return Pago.builder().fecha(actual).monto(monto).contratoID(contrato.getId()).build();
 
     }
@@ -107,6 +109,13 @@ public class Main {
         Depto depto6 = DeptoBuilder("02", "1", edificio2, sistema);
         Depto depto7 = DeptoBuilder("01", "2", edificio2, sistema);
 
+        /*
+         * agregar contratos
+         **/
+
+        Contrato contrato = ContratoBuilder(persona1, depto1, sistema);
+        Contrato contrato1 = ContratoBuilder(persona1, depto2, sistema);
+
         /* Se han agregado objetos
         donde se escribe el builder y con el builder se van añadiendo cada parametro
         con ese parametro termina en .build
@@ -117,8 +126,7 @@ public class Main {
 
 
 
-        Contrato contrato = ContratoBuilder(persona1);
-        Contrato contrato1 = ContratoBuilder(persona1);
+
 
         contrato.getDeptos().add(depto1);
         contrato1.getDeptos().add(depto2);
