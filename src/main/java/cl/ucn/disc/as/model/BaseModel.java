@@ -22,6 +22,7 @@ import java.time.Instant;
 @MappedSuperclass
 @Getter
 @Setter
+@Entity
 public abstract class BaseModel {
 
     /**

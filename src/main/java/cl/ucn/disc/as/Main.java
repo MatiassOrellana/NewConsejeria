@@ -92,7 +92,7 @@ public class Main {
 
         /* Se han agregado objetos
         donde se escribe el builder y con el builder se van añadiendo cada parametro
-        con ese parametro termina en .build**/
+        con ese parametro termina en .build
 
 
         Persona persona1 = PersonaBuilder("20040819-5", "Matias", "Orellana Hormazabal", "matias.orellana@alumnos.ucn.cl", "+56213671283");
@@ -148,7 +148,7 @@ public class Main {
 //        oPersona.ifPresent(p -> log.debug("Persona: {}", p));//busca la persona con ese rut
 
         log.debug("Done.  ");
-
+        **/
 
     }
 
