@@ -89,15 +89,16 @@ public class Main {
          * agregar personas
          **/
 
+        Persona persona1 = PersonaBuilder("20040819-5", "Matias", "Orellana Hormazabal", "matias.orellana@alumnos.ucn.cl", "+56213671283", sistema);
+        Persona persona2 = PersonaBuilder("20416699-4", "Oscar", "Laura Hurtado", "oscarLauraH@gmail.com", "+56245465466", sistema);
+
 
         /* Se han agregado objetos
         donde se escribe el builder y con el builder se van añadiendo cada parametro
         con ese parametro termina en .build
-        **/
 
 
-        Persona persona1 = PersonaBuilder("20040819-5", "Matias", "Orellana Hormazabal", "matias.orellana@alumnos.ucn.cl", "+56213671283", sistema);
-        Persona persona2 = PersonaBuilder("20416699-4", "Oscar", "Laura Hurtado", "oscarLauraH@gmail.com", "+56245465466", sistema);
+
 
         Depto depto1 = DeptoBuilder("01", "1", edificio);
         Depto depto2 = DeptoBuilder("02", "1", edificio);
@@ -147,7 +148,7 @@ public class Main {
 
         log.debug("Done.  ");
 
-
+**/
     }
 
 }
