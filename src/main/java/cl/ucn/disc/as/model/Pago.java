@@ -22,19 +22,19 @@ public class Pago extends BaseModel {
     /**
      * The fecha.
      */
-    @NonNull
+    @NotNull
     private Date fecha;
 
     /**
      * The Monto.
      */
-    @NonNull
+    @NotNull
     private Double monto;
 
     /**
      * The Contrato ID.
      */
-    @NonNull
+    @NotNull
     private Long contratoID;
 
 

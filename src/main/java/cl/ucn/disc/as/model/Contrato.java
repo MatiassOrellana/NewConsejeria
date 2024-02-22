@@ -23,25 +23,25 @@ public class Contrato extends BaseModel{
     /**
      * The Fecha de contratacion.
      */
-    @NonNull
+    @NotNull
     private Date fechaDeContrato;
 
     /**
      * The Dueño.
      */
-    @NonNull
+    @NotNull
     private Long dueñoID;
 
     /**
      * The Pagos.
      */
-    @NonNull
+    @NotNull
     private List<Pago> pagos;
 
     /**
      * The Deptos.
      */
-    @NonNull
+    @NotNull
     private List<Depto> deptos;
 
 }

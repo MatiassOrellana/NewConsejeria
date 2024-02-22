@@ -22,19 +22,19 @@ public class Edificio extends BaseModel {
     /**
      * The Nombre.
      */
-    @NonNull
+    @NotNull
     private String nombre;
 
     /**
      * The Direccion.
      */
-    @NonNull
+    @NotNull
     private String direccion;
 
     /**
      * The Edificios.
      */
-    @NonNull
+    @NotNull
     private List<Depto> deptos;
 
 }
