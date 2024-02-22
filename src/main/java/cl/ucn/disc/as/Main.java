@@ -42,9 +42,12 @@ public class Main {
 
     }
 
-    public static Depto DeptoBuilder(String numero, String piso, Edificio edificio){
+    public static Depto DeptoBuilder(String numero, String piso, Edificio edificio, Sistema sis){
 
-        return Depto.builder().numero(numero).piso(piso).IDEdificio(edificio.getId()).build();
+        Long IDEdificio = edificio.getId();
+        Depto depto = Depto.builder().numero(numero).piso(piso).IDEdificio(IDEdificio).build();
+
+        return sis.addDepto(depto, IDEdificio);
 
     }
 
@@ -92,6 +95,17 @@ public class Main {
         Persona persona1 = PersonaBuilder("20040819-5", "Matias", "Orellana Hormazabal", "matias.orellana@alumnos.ucn.cl", "+56213671283", sistema);
         Persona persona2 = PersonaBuilder("20416699-4", "Oscar", "Laura Hurtado", "oscarLauraH@gmail.com", "+56245465466", sistema);
 
+        /*
+         * agregar deptos
+         **/
+
+        Depto depto1 = DeptoBuilder("01", "1", edificio, sistema);
+        Depto depto2 = DeptoBuilder("02", "1", edificio, sistema);
+        Depto depto3 = DeptoBuilder("01", "1", edificio1, sistema);
+        Depto depto4 = DeptoBuilder("02", "1", edificio1, sistema);
+        Depto depto5 = DeptoBuilder("01", "1", edificio2, sistema);
+        Depto depto6 = DeptoBuilder("02", "1", edificio2, sistema);
+        Depto depto7 = DeptoBuilder("01", "2", edificio2, sistema);
 
         /* Se han agregado objetos
         donde se escribe el builder y con el builder se van añadiendo cada parametro
@@ -100,13 +114,7 @@ public class Main {
 
 
 
-        Depto depto1 = DeptoBuilder("01", "1", edificio);
-        Depto depto2 = DeptoBuilder("02", "1", edificio);
-        Depto depto3 = DeptoBuilder("01", "1", edificio1);
-        Depto depto4 = DeptoBuilder("02", "1", edificio1);
-        Depto depto5 = DeptoBuilder("01", "1", edificio2);
-        Depto depto6 = DeptoBuilder("02", "1", edificio2);
-        Depto depto7 = DeptoBuilder("01", "2", edificio2);
+
 
 
         Contrato contrato = ContratoBuilder(persona1);
