@@ -6,6 +6,7 @@ package cl.ucn.disc.as.model;
 
 import io.ebean.annotation.WhenCreated;
 import io.ebean.annotation.WhenModified;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,7 +23,6 @@ import java.time.Instant;
 @MappedSuperclass
 @Getter
 @Setter
-@Entity
 public abstract class BaseModel {
 
     /**

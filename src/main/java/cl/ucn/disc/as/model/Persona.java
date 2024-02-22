@@ -26,31 +26,31 @@ public class Persona extends BaseModel {
     /**
      * The RUT.
      */
-    @NotNull
+    @NonNull
     private String rut;
 
     /**
      * The Nombre.
      */
-    @NotNull
+    @NonNull
     private String nombre;
 
     /**
      * The Apellidos.
      */
-    @NotNull
+    @NonNull
     private String apellidos;
 
     /**
      * The Email.
      */
-    @NotNull
+    @NonNull
     private String email;
 
     /**
      * The Telefono.
      */
-    @NotNull
+    @NonNull
     private String telefono;
 
     /**
@@ -59,13 +59,13 @@ public class Persona extends BaseModel {
      * 2 = otro
      */
 
-    @NotNull
+    @NonNull
     private int tipo;
 
     /**
      * The Contrato
      */
-    @NotNull
+    @NonNull
     private List<Contrato> contratos;
 
 }

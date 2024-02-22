@@ -1,5 +1,6 @@
 package cl.ucn.disc.as.model;
 
+import io.avaje.lang.Nullable;
 import io.ebean.annotation.NotNull;
 import io.ebeaninternal.server.util.Str;
 import lombok.*;
@@ -26,25 +27,26 @@ public class Depto extends BaseModel{
     /**
      * The Numero (String).
      */
-    @NotNull
+    @NonNull
     private String numero;
 
     /**
      * The Piso (String).
      */
-    @NotNull
+    @NonNull
     private String piso;
 
     /**
      * The Contrato, the depto can or not have a contract.
      */
 
+    @Nullable
     private Long contratoID;
 
     /**
      * The Edificio ID.
      */
-    @NotNull
+    @NonNull
     private Long IDEdificio;
 
 
