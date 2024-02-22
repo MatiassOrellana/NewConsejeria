@@ -26,15 +26,19 @@ import java.util.Date;
 //la hora, todo
 public class Main {
 
-    public static Edificio EdificioBuilder(String nombre, String direccion){
+    public static Edificio EdificioBuilder(String nombre, String direccion, Sistema sis){
 
-        return Edificio.builder().nombre(nombre).direccion(direccion).build();
+        Edificio edificio = Edificio.builder().nombre(nombre).direccion(direccion).build();
+
+        return sis.addEdificio(edificio);
 
     }
 
-    public static Persona PersonaBuilder(String rut, String nombre, String apellidos, String email, String telefono){
+    public static Persona PersonaBuilder(String rut, String nombre, String apellidos, String email, String telefono, Sistema sis){
 
-        return Persona.builder().rut(rut).nombre(nombre).apellidos(apellidos).email(email).telefono(telefono).build();
+        Persona persona = Persona.builder().rut(rut).nombre(nombre).apellidos(apellidos).email(email).telefono(telefono).build();
+
+        return sis.addPersona(persona);
 
     }
 
@@ -73,13 +77,9 @@ public class Main {
         /*
         * agregar edificios
         **/
-        Edificio edificio = EdificioBuilder("y1", "av. perez zujovic 099");
-        Edificio edificio1 = EdificioBuilder("calipso", "Enrique segoviano");
-        Edificio edificio2 = EdificioBuilder("y2", "av. jorge gonzalez 301");
-
-        edificio = sistema.addEdificio(edificio);
-        edificio1 = sistema.addEdificio(edificio1);
-        edificio2 = sistema.addEdificio(edificio2);
+        Edificio edificio = EdificioBuilder("y1", "av. perez zujovic 099", sistema);
+        Edificio edificio1 = EdificioBuilder("calipso", "Enrique segoviano", sistema);
+        Edificio edificio2 = EdificioBuilder("y2", "av. jorge gonzalez 301", sistema);
 
         log.debug("edificio after dc: {}",edificio);
         log.debug("edificio after dc: {}",edificio1);
@@ -93,13 +93,11 @@ public class Main {
         /* Se han agregado objetos
         donde se escribe el builder y con el builder se van añadiendo cada parametro
         con ese parametro termina en .build
+        **/
 
 
-        Persona persona1 = PersonaBuilder("20040819-5", "Matias", "Orellana Hormazabal", "matias.orellana@alumnos.ucn.cl", "+56213671283");
-        Persona persona2 = PersonaBuilder("20416699-4", "Oscar", "Laura Hurtado", "oscarLauraH@gmail.com", "+56245465466");
-
-        persona1 = sistema.addPersona(persona1);
-        persona2 = sistema.addPersona(persona2);
+        Persona persona1 = PersonaBuilder("20040819-5", "Matias", "Orellana Hormazabal", "matias.orellana@alumnos.ucn.cl", "+56213671283", sistema);
+        Persona persona2 = PersonaBuilder("20416699-4", "Oscar", "Laura Hurtado", "oscarLauraH@gmail.com", "+56245465466", sistema);
 
         Depto depto1 = DeptoBuilder("01", "1", edificio);
         Depto depto2 = DeptoBuilder("02", "1", edificio);
@@ -148,7 +146,7 @@ public class Main {
 //        oPersona.ifPresent(p -> log.debug("Persona: {}", p));//busca la persona con ese rut
 
         log.debug("Done.  ");
-        **/
+
 
     }
 
