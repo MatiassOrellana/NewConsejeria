@@ -48,7 +48,7 @@ public interface Sistema {
      * @param contrato a agregar
      * @return
      */
-    public Contrato addContrato(Long dueñoID, Depto departamento, Contrato contrato);
+    public Contrato addContrato(Long dueñoID, Long departamentoID, Contrato contrato);
 
     /**
      * @param pago a agregar

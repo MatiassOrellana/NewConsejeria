@@ -54,16 +54,19 @@ public class Main {
     public static Contrato ContratoBuilder(Persona dueño, Depto depto, Sistema sis){
 
         Long IDDueño = dueño.getId();
+        Long IDDepto = depto.getId();
         Date actual = LocalDate.now().toDate();
-        Contrato contrato = Contrato.builder().fechaDeContrato(actual).dueñoID(dueño.getId()).build();
-        return sis.addContrato(IDDueño, depto, contrato);
+        Contrato contrato = Contrato.builder().fechaDeContrato(actual).build();
+        return sis.addContrato(IDDueño, IDDepto, contrato);
 
     }
 
-    public static Pago PagoBuilder(Double monto, Contrato contrato){
+    public static Pago PagoBuilder(Double monto, Contrato contrato, Sistema sis){
 
+        Long IDContrato = contrato.getId();
         Date actual = LocalDate.now().toDate();
-        return Pago.builder().fecha(actual).monto(monto).contratoID(contrato.getId()).build();
+        Pago pago = Pago.builder().fecha(actual).monto(monto).build();
+        return sis.addPago(pago,IDContrato);
 
     }
 
@@ -116,42 +119,19 @@ public class Main {
         Contrato contrato = ContratoBuilder(persona1, depto1, sistema);
         Contrato contrato1 = ContratoBuilder(persona1, depto2, sistema);
 
+        /*
+         * agregar pagos
+        **/
+
+        Pago pago1 = PagoBuilder(34.1, contrato, sistema);
+        Pago pago2 = PagoBuilder(41.4, contrato, sistema);
+        Pago pago3 = PagoBuilder(37.4, contrato1, sistema);
+
         /* Se han agregado objetos
         donde se escribe el builder y con el builder se van añadiendo cada parametro
         con ese parametro termina en .build
 
 
-
-
-
-
-
-
-
-        contrato.getDeptos().add(depto1);
-        contrato1.getDeptos().add(depto2);
-
-        Pago pago1 = PagoBuilder(34.1, contrato);
-        Pago pago2 = PagoBuilder(41.4, contrato);
-        Pago pago3 = PagoBuilder(37.4, contrato1);
-
-
-
-
-        db.save(persona1);//guarda la persona a la base de datos
-        db.save(persona2);
-        db.save(edificio);
-        db.save(edificio1);
-        db.save(depto1);
-        db.save(depto2);
-        db.save(depto3);
-        db.save(depto4);
-        db.save(depto5);
-        db.save(depto6);
-        db.save(depto7);
-        db.save(pago1);
-        db.save(pago2);
-        db.save(pago3);
         // la base de datos utiliza SQLite
         // consejeria.db esa es la base de datos
 

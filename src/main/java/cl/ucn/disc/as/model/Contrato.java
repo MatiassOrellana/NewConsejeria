@@ -33,6 +33,13 @@ public class Contrato extends BaseModel{
     private Long dueñoID;
 
     /**
+     * The depto, the depto can or not have a contract.
+     */
+
+    @NotNull
+    private Long deptoID;
+
+    /**
      * The Pagos.
      */
     @NotNull

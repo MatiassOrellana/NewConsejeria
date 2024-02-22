@@ -36,12 +36,6 @@ public class Depto extends BaseModel{
     private String piso;
 
     /**
-     * The Contrato, the depto can or not have a contract.
-     */
-
-    private Long contratoID;
-
-    /**
      * The Edificio ID.
      */
     @NotNull
