@@ -1,0 +1,157 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class BaseModel {
+  + BaseModel(): 
+  - created: Instant
+  - version: Long
+  - id: Long
+  - modified: Instant
+  + getId(): Long
+  + getVersion(): Long
+  + getCreated(): Instant
+  + getModified(): Instant
+  + setId(Long): void
+  + setVersion(Long): void
+  + setCreated(Instant): void
+  + setModified(Instant): void
+  + toString(): String
+}
+class Contrato {
+  + Contrato(Date, Long, Long, List<Pago>, List<Depto>): 
+  - dueñoID: Long
+  - deptos: List<Depto>
+  - pagos: List<Pago>
+  - fechaDeContrato: Date
+  - deptoID: Long
+  + getPagos(): List<Pago>
+  + getFechaDeContrato(): Date
+  + builder(): ContratoBuilder
+  + getDueñoID(): Long
+  + getDeptoID(): Long
+  + getDeptos(): List<Depto>
+  + setFechaDeContrato(Date): void
+  + setDueñoID(Long): void
+  + setDeptoID(Long): void
+  + toString(): String
+  + setPagos(List<Pago>): void
+  + setDeptos(List<Depto>): void
+}
+class Depto {
+  + Depto(String, String, Long): 
+  - piso: String
+  - numero: String
+  - IDEdificio: Long
+  + getNumero(): String
+  + getPiso(): String
+  + getIDEdificio(): Long
+  + setNumero(String): void
+  + setPiso(String): void
+  + setIDEdificio(Long): void
+  + toString(): String
+  + builder(): DeptoBuilder
+}
+class Edificio {
+  + Edificio(String, String, List<Depto>): 
+  - nombre: String
+  - direccion: String
+  - deptos: List<Depto>
+  + getNombre(): String
+  + getDireccion(): String
+  + getDeptos(): List<Depto>
+  + setNombre(String): void
+  + setDireccion(String): void
+  + setDeptos(List<Depto>): void
+  + toString(): String
+  + builder(): EdificioBuilder
+}
+class Pago {
+  + Pago(Date, Double, Long): 
+  - fecha: Date
+  - contratoID: Long
+  - monto: Double
+  + getFecha(): Date
+  + getMonto(): Double
+  + getContratoID(): Long
+  + setFecha(Date): void
+  + setMonto(Double): void
+  + setContratoID(Long): void
+  + toString(): String
+  + builder(): PagoBuilder
+}
+class Persona {
+  + Persona(String, String, String, String, String, int, List<Contrato>): 
+  - nombre: String
+  - telefono: String
+  - contratos: List<Contrato>
+  - email: String
+  - tipo: int
+  - rut: String
+  - apellidos: String
+  + getRut(): String
+  + getNombre(): String
+  + setTelefono(String): void
+  + builder(): PersonaBuilder
+  + setContratos(List<Contrato>): void
+  + toString(): String
+  + setApellidos(String): void
+  + getApellidos(): String
+  + getEmail(): String
+  + getTelefono(): String
+  + setTipo(int): void
+  + getTipo(): int
+  + getContratos(): List<Contrato>
+  + setRut(String): void
+  + setNombre(String): void
+  + setEmail(String): void
+}
+interface Sistema << interface >> {
+  + addDepto(Depto, Edificio): Depto
+  + addContrato(Persona, Depto, Contrato): Contrato
+  + addContrato(Long, Long, Contrato): Contrato
+  + addPago(Pago, Contrato): Pago
+  + addPersona(Persona): Persona
+  + addEdificio(Edificio): Edificio
+  + addPago(Pago, Long): Pago
+  + addDepto(Depto, Long): Depto
+}
+class SistemaIMPL {
+  + SistemaIMPL(Database): 
+  - contratos: List<Contrato>
+  - personas: List<Persona>
+  - database: Database
+  - pagos: List<Pago>
+  - deptos: List<Depto>
+  - edificios: List<Edificio>
+  - log: Logger
+  + addContrato(Persona, Depto, Contrato): Contrato
+  + getEdificios(): List<Edificio>
+  + addPago(Pago, Long): Pago
+  + getContratos(): List<Contrato>
+  + getPagos(): List<Pago>
+  + getPersonas(): List<Persona>
+  + getDeptos(): List<Depto>
+  + getDatabase(): Database
+  + setContratos(List<Contrato>): void
+  + setPagos(List<Pago>): void
+  + setDeptos(List<Depto>): void
+  + setEdificios(List<Edificio>): void
+  + setPersonas(List<Persona>): void
+  + addDepto(Depto, Long): Depto
+  + addPersona(Persona): Persona
+  + addEdificio(Edificio): Edificio
+  + addDepto(Depto, Edificio): Depto
+  + addPago(Pago, Contrato): Pago
+  + addContrato(Long, Long, Contrato): Contrato
+}
+
+Contrato     -[#000082,plain]-^  BaseModel   
+Depto        -[#000082,plain]-^  BaseModel   
+Edificio     -[#000082,plain]-^  BaseModel   
+Pago         -[#000082,plain]-^  BaseModel   
+Persona      -[#000082,plain]-^  BaseModel   
+SistemaIMPL  -[#008200,dashed]-^  Sistema     
+@enduml
