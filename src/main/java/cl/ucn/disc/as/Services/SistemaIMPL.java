@@ -47,26 +47,10 @@ public class SistemaIMPL implements Sistema{
     }
 
     @Override
-    public Depto addDepto(@NotNull Depto departamento,@NotNull Edificio edificio) {
-        edificio.getDeptos().add(departamento);
-        this.database.save(departamento);
-        return departamento;
-    }
-
-    @Override
     public Depto addDepto(@NotNull Depto departamento,@NotNull Long idEdificio) {
         departamento.setIDEdificio(idEdificio);
         this.database.save(departamento);
         return departamento;
-    }
-
-    @Override
-    public Contrato addContrato(@NotNull Persona dueño, @NotNull Depto departamento, @NotNull Contrato contrato) {
-        dueño.getContratos().add(contrato);
-        if (dueño.getTipo() == 2){ dueño.setTipo(1);}
-        contrato.getDeptos().add(departamento);
-        this.database.save(contrato);
-        return contrato;
     }
 
     @Override
@@ -76,13 +60,6 @@ public class SistemaIMPL implements Sistema{
         contrato.setDueñoID(dueñoID);
         this.database.save(contrato);
         return contrato;
-    }
-
-    @Override
-    public Pago addPago(@NotNull Pago pago, @NotNull Contrato contrato) {
-        contrato.getPagos().add(pago);
-        this.database.save(pago);
-        return pago;
     }
 
     @Override

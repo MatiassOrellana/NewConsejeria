@@ -25,13 +25,7 @@ public interface Sistema {
      * @param edificio a agregar
      * @return
      */
-    public Depto addDepto(Depto departamento, Edificio edificio);
 
-    /**
-     * @param departamento a agregar
-     * @param idEdificio a agregar
-     * @return
-     */
     public Depto addDepto(Depto departamento, Long idEdificio);
 
     /**
@@ -40,14 +34,7 @@ public interface Sistema {
      * @param contrato a agregar
      * @return
      */
-    public Contrato addContrato(Persona dueño, Depto departamento, Contrato contrato);
 
-    /**
-     * @param dueñoID a agregar
-     * @param departamento a agregar
-     * @param contrato a agregar
-     * @return
-     */
     public Contrato addContrato(Long dueñoID, Long departamentoID, Contrato contrato);
 
     /**
@@ -55,13 +42,7 @@ public interface Sistema {
      * @param contrato a agregar
      * @return
      */
-    public Pago addPago(Pago pago, Contrato contrato);
 
-    /**
-     * @param pago a agregar
-     * @param contratoID a agregar
-     * @return
-     */
     public Pago addPago(Pago pago, Long contratoID);
 
 }
