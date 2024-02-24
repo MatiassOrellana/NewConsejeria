@@ -54,15 +54,6 @@ public class Persona extends BaseModel {
     private String telefono;
 
     /**
-     * The Tipo.
-     * 1 = dueño
-     * 2 = otro
-     */
-
-    @NotNull
-    private int tipo;
-
-    /**
      * The Contrato
      */
     @NotNull
