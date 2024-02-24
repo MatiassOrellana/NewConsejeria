@@ -26,14 +26,22 @@ import java.util.Date;
 //la hora, todo
 public class Main {
 
+    /**
+     * Procedimeinto para construir edificio llamando a builder
+     */
     public static Edificio EdificioBuilder(String nombre, String direccion, Sistema sis){
 
+        /**construye el edificio*/
         Edificio edificio = Edificio.builder().nombre(nombre).direccion(direccion).build();
 
+        /**retornando al utilizar el sistema para añadir al edificio*/
         return sis.addEdificio(edificio);
 
     }
 
+    /**
+     * Procedimeinto para construir a la persona llamando a builder similar al edificio
+     */
     public static Persona PersonaBuilder(String rut, String nombre, String apellidos, String email, String telefono, Sistema sis){
 
         Persona persona = Persona.builder().rut(rut).nombre(nombre).apellidos(apellidos).email(email).telefono(telefono).build();
@@ -42,28 +50,47 @@ public class Main {
 
     }
 
+    /**
+     * Procedimeinto para construir al departamento llamando a builder similar al edificio
+     * a diferencia que se debe obtener la ID del edificio debido a que es una relacion de 1 a N
+     */
     public static Depto DeptoBuilder(String numero, String piso, Edificio edificio, Sistema sis){
 
-        Long IDEdificio = edificio.getId();
+        Long IDEdificio = edificio.getId();//obtiene la ID
         Depto depto = Depto.builder().numero(numero).piso(piso).IDEdificio(IDEdificio).build();
 
         return sis.addDepto(depto, IDEdificio);
 
     }
 
+    /**
+     * Procedimeinto para construir al contrato llamando a builder similar al edificio
+     * a diferencia que se debe obtener la ID del depto debido a que es una relacion de 1 a N
+     * y tambien se debe vincular con la id de la persona
+     * y como tiene la fecha, se le asigna la actual
+     */
     public static Contrato ContratoBuilder(Persona dueño, Depto depto, Sistema sis){
 
+        //se obtienen las IDS
         Long IDDueño = dueño.getId();
         Long IDDepto = depto.getId();
+        //asigna la fecha actual y la hora actual
         Date actual = LocalDate.now().toDate();
         Contrato contrato = Contrato.builder().fechaDeContrato(actual).build();
         return sis.addContrato(IDDueño, IDDepto, contrato);
 
     }
 
+    /**
+     * Procedimeinto para construir al contrato llamando a builder similar al edificio
+     * a diferencia que se debe obtener la ID del contrato debido a que es una relacion de 1 a N
+     * y como tiene la fecha, se le asigna la actual
+     */
     public static Pago PagoBuilder(Double monto, Contrato contrato, Sistema sis){
 
+        //se obtienen las IDS
         Long IDContrato = contrato.getId();
+        //asigna la fecha actual y la hora actual
         Date actual = LocalDate.now().toDate();
         Pago pago = Pago.builder().fecha(actual).monto(monto).build();
         return sis.addPago(pago,IDContrato);
