@@ -2,6 +2,7 @@ package cl.ucn.disc.as.model;
 
 import io.ebean.annotation.NotNull;
 import lombok.*;
+import org.joda.time.DateTime;
 
 import javax.persistence.Entity;
 import java.util.Date;
@@ -24,7 +25,7 @@ public class Contrato extends BaseModel{
      * The Fecha de contratacion.
      */
     @NotNull
-    private Date fechaDeContrato;
+    private DateTime fechaDeContrato;
 
     /**
      * The Dueño.

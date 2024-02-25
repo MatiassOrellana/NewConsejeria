@@ -2,6 +2,7 @@ package cl.ucn.disc.as.model;
 
 import io.ebean.annotation.NotNull;
 import lombok.*;
+import org.joda.time.DateTime;
 
 import javax.persistence.Entity;
 import java.util.Date;
@@ -23,7 +24,7 @@ public class Pago extends BaseModel {
      * The fecha.
      */
     @NotNull
-    private Date fecha;
+    private DateTime fecha;
 
     /**
      * The Monto.

@@ -75,7 +75,7 @@ public class Main {
         Long IDDueño = dueño.getId();
         Long IDDepto = depto.getId();
         //asigna la fecha actual y la hora actual
-        Date actual = LocalDate.now().toDate();
+        DateTime actual = DateTime.now();
         Contrato contrato = Contrato.builder().fechaDeContrato(actual).build();
         return sis.addContrato(IDDueño, IDDepto, contrato);
 
@@ -91,7 +91,7 @@ public class Main {
         //se obtienen las IDS
         Long IDContrato = contrato.getId();
         //asigna la fecha actual y la hora actual
-        Date actual = LocalDate.now().toDate();
+        DateTime actual = DateTime.now();
         Pago pago = Pago.builder().fecha(actual).monto(monto).build();
         return sis.addPago(pago,IDContrato);
 
