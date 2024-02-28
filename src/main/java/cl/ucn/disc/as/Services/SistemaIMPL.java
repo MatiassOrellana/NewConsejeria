@@ -48,23 +48,29 @@ public class SistemaIMPL implements Sistema{
 
     @Override
     public Depto addDepto(@NotNull Depto departamento,@NotNull Long idEdificio) {
+        /**added vinculation with depto and edificio*/
         departamento.setIDEdificio(idEdificio);
+        /**save in the database*/
         this.database.save(departamento);
         return departamento;
     }
 
     @Override
     public Contrato addContrato(@NotNull Long dueñoID, @NotNull Long departamentoID, @NotNull Contrato contrato) {
-
+        /**added vinculation with depto and contrato*/
         contrato.setDeptoID(departamentoID);
+        /**added vinculation with depto and dueño*/
         contrato.setDueñoID(dueñoID);
+        /**save in the database*/
         this.database.save(contrato);
         return contrato;
     }
 
     @Override
     public Pago addPago(@NotNull Pago pago, @NotNull Long contratoID) {
+        /**added vinculation with pago and contrato*/
         pago.setContratoID(contratoID);
+        /**save in the database*/
         this.database.save(pago);
         return pago;
     }
