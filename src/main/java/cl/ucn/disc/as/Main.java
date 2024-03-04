@@ -3,6 +3,7 @@ package cl.ucn.disc.as;
 
 import cl.ucn.disc.as.Services.Sistema;
 import cl.ucn.disc.as.Services.SistemaIMPL;
+import cl.ucn.disc.as.connectionSQL.DatabaseConnection;
 import cl.ucn.disc.as.model.*;
 import io.ebean.DB;
 import io.ebean.Database;
@@ -13,7 +14,13 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * The Main
@@ -97,6 +104,35 @@ public class Main {
         return sis.addPago(pago,IDContrato);
 
     }
+
+
+    private static List<Persona> obtenerListaPersonas(Sistema sis) {
+        List<Persona> personas = new ArrayList<>();
+
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String sql = "SELECT * FROM persona";
+            try (PreparedStatement statement = connection.prepareStatement(sql);
+                 ResultSet resultSet = statement.executeQuery()) {
+
+                while (resultSet.next()) {
+                    String rut = resultSet.getString("rut");
+                    String nombre = resultSet.getString("nombre");
+                    String apellidos = resultSet.getString("apellidos");
+                    String email = resultSet.getString("email");
+                    String telefono = resultSet.getString("telefono");
+                    personas.add(Persona.builder().rut(rut).nombre(nombre).apellidos(apellidos)
+                            .email(email).telefono(telefono).build());
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Manejo adecuado de las excepciones en un entorno real
+        }
+
+        return personas;
+    }
+
+
     public static void main(String[] args) {
 
         log.debug("starting main...");
@@ -159,8 +195,16 @@ public class Main {
 
         /**Esto apunta al puerto, es similar a los controladores de software donde utiliza un http y con esa
          * peticion obtiene el resultado*/
+
+        /**are as controllers*/
         Javalin app = Javalin.create().start(2026);
         app.get("/", ctx -> ctx.result("Hola chavo"));
+
+        app.get("/personas", ctx -> {
+            List<Persona> listaPersonas = obtenerListaPersonas(sistema);
+            ctx.json(listaPersonas);
+        });
+
 
 
     }
