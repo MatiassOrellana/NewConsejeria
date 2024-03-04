@@ -2,7 +2,6 @@ plugins {
     id 'idea'
     id 'java'
     id('io.ebean') version '13.11.0'
-    id('https://github.com/MatiassOrellana/NewConsejeria/tree/Part1') version '1.0.0'
 }
 
 group = 'cl.ucn.disc.as'
