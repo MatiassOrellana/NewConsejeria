@@ -1,0 +1,25 @@
+{
+	"info": {
+		"_postman_id": "d395e0d2-a361-4f0b-ab2d-ecd21f99d4a8",
+		"name": "JavaLinRecource",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25748462"
+	},
+	"item": [
+		{
+			"name": "TestHelloWorld",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2026",
+					"host": [
+						"localhost"
+					],
+					"port": "2026"
+				}
+			},
+			"response": []
+		}
+	]
+}

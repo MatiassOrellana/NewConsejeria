@@ -101,11 +101,6 @@ public class Main {
 
         log.debug("starting main...");
 
-        /**Esto apunta al puerto, es similar a los controladores de software donde utiliza un http y con esa
-         * peticion obtiene el resultado*/
-        Javalin app = Javalin.create().start(2026);
-        app.get("/", ctx -> ctx.result("Hola chavo"));
-
         Database db = DB.getDefault();//crea la base de datos
 
         Sistema sistema = new SistemaIMPL(db);
@@ -161,6 +156,11 @@ public class Main {
         con ese parametro termina en .build
 
         */
+
+        /**Esto apunta al puerto, es similar a los controladores de software donde utiliza un http y con esa
+         * peticion obtiene el resultado*/
+        Javalin app = Javalin.create().start(2026);
+        app.get("/", ctx -> ctx.result("Hola chavo"));
 
 
     }
