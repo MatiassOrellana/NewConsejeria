@@ -7,6 +7,7 @@ import cl.ucn.disc.as.model.*;
 import io.ebean.DB;
 import io.ebean.Database;
 import io.ebeaninternal.server.util.Str;
+import io.javalin.Javalin;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -96,11 +97,6 @@ public class Main {
         return sis.addPago(pago,IDContrato);
 
     }
-
-
-
-
-
     public static void main(String[] args) {
 
         log.debug("starting main...");
@@ -155,24 +151,18 @@ public class Main {
         Pago pago2 = PagoBuilder(41.4, contrato, sistema);
         Pago pago3 = PagoBuilder(37.4, contrato1, sistema);
 
-        /* Se han agregado objetos
+        /** Se han agregado objetos
         donde se escribe el builder y con el builder se van añadiendo cada parametro
         con ese parametro termina en .build
 
+        */
 
-        // la base de datos utiliza SQLite
-        // consejeria.db esa es la base de datos
-
-        log.debug("The Persona: ${}", persona1);
-
-
-//        PersonaFinder df = new PersonaFinder();//creador de objeto
-//        Optional<Persona> oPersona = df.byRut("20416699-4");//opcional de la persona en caso de nulos
-//        oPersona.ifPresent(p -> log.debug("Persona: {}", p));//busca la persona con ese rut
+        /**Esto apunta al puerto, es similar a los controladores de software donde utiliza un http y con esa
+         * peticion obtiene el resultado*/
+        Javalin app = Javalin.create().start(2026);
+        app.get("/", ctx -> ctx.result("Hola chavo"));
 
         log.debug("Done.  ");
-
-**/
     }
 
 }
