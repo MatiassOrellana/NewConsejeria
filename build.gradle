@@ -23,6 +23,17 @@ compileJava {
     options.encoding = 'UTF-8'
 }
 
+ext {
+    ebeanVersion = '13.23.1'
+    sqliteVersion = '3.43.2.1'
+    javalinVersion = '5.6.3'
+    lombokVersion = '1.18.30'
+    gsonVersion = '2.10.1'
+    logbackVersion = '1.4.11'
+    commonsLangVersion = '3.13.0'
+    javaFakerVersion = '1.0.2'
+}
+
 dependencies {
     // junit
     testImplementation platform('org.junit:junit-bom:5.9.1')
@@ -48,15 +59,27 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.10.1'
 
     // web: javalin
-    implementation 'io.javalin:javalin:5.6.1'
+    implementation 'io.javalin:javalin:6.1.3'
 
     // lombok
     compileOnly 'org.projectlombok:lombok:1.18.28'
     annotationProcessor 'org.projectlombok:lombok:1.18.28'
 
     // logger
-    implementation 'ch.qos.logback:logback-core:1.4.11'
-    implementation 'ch.qos.logback:logback-classic:1.4.11'
+    implementation 'ch.qos.logback:logback-core:1.5.2'
+    implementation 'ch.qos.logback:logback-classic:1.5.2'
+
+    // commons-lang3
+    implementation 'org.apache.commons:commons-lang3:3.14.0'
+
+    //dataFaker
+    implementation 'net.datafaker:datafaker:2.1.0'
+
+    //jackson core
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+
+    //jackson module
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.16.1'
 
 }
 

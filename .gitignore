@@ -43,5 +43,8 @@ bin/
 
 #Folders locked on the repository manually
 test/
+gradle/
+.gradle/
+.idea/
 
 #Files locked on the repository git manually

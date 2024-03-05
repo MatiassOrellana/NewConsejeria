@@ -6,13 +6,12 @@ package cl.ucn.disc.as.model;
 
 import io.ebean.annotation.WhenCreated;
 import io.ebean.annotation.WhenModified;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
+import javax.persistence.*;
 import java.time.Instant;
 
 /**
@@ -22,37 +21,32 @@ import java.time.Instant;
  */
 @ToString
 @MappedSuperclass
+@Getter
+@Setter
 public abstract class BaseModel {
 
     /**
      * The Id.
      */
-    @Getter
-    @Setter
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
      * The Version.
      */
-    @Getter
-    @Setter
     @Version
     private Long version;
 
     /**
      * Creation date.
      */
-    @Getter
-    @Setter
     @WhenCreated
     private Instant created;
 
     /**
      * Modified date.
      */
-    @Getter
-    @Setter
     @WhenModified
     private Instant modified;
 

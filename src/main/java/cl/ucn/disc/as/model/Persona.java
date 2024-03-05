@@ -5,11 +5,10 @@
 package cl.ucn.disc.as.model;
 
 import io.ebean.annotation.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
+import java.util.List;
 
 /**
  * The Persona class.
@@ -20,13 +19,15 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 @Builder
 @Entity
+@Getter
+@Setter
 public class Persona extends BaseModel {
 
     /**
      * The RUT.
      */
     @NotNull
-    private Integer rut;
+    private String rut;
 
     /**
      * The Nombre.
@@ -51,5 +52,11 @@ public class Persona extends BaseModel {
      */
     @NotNull
     private String telefono;
+
+    /**
+     * The Contrato
+     */
+    @NotNull
+    private List<Contrato> contratos;
 
 }
