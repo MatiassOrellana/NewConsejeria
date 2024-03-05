@@ -3,28 +3,13 @@ package cl.ucn.disc.as;
 
 import cl.ucn.disc.as.Services.Sistema;
 import cl.ucn.disc.as.Services.SistemaIMPL;
-import cl.ucn.disc.as.dto.PersonaDTO;
-import cl.ucn.disc.as.exceptions.ErrorResponse;
-import cl.ucn.disc.as.exceptions.IllegalDomainException;
-import cl.ucn.disc.as.model.*;
 import cl.ucn.disc.as.routes.RoutesConfigurator;
 import cl.ucn.disc.as.routes.WebController;
 import cl.ucn.disc.as.seeders.Seed;
 import io.ebean.DB;
 import io.ebean.Database;
-import io.ebeaninternal.server.util.Str;
 import io.javalin.Javalin;
 import lombok.extern.slf4j.Slf4j;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * The Main
