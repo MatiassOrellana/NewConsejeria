@@ -68,6 +68,8 @@ public interface Sistema {
      */
     public List<Persona> getPersonasByDB();
 
+    public List<Depto> getDeptosByDB();
+
 }
 
 

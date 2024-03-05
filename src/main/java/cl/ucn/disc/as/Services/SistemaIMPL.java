@@ -184,4 +184,10 @@ public class SistemaIMPL implements Sistema{
         //TODO: Implement offset and max rows
         return database.find(Persona.class).findList();
     }
+
+    @Override
+    public List<Depto> getDeptosByDB() {
+        //TODO: Implement offset and max rows
+        return database.find(Depto.class).findList();
+    }
 }

@@ -97,7 +97,7 @@ public class Main {
         Javalin app = createAndConfigureJavalin(sis);
 
         //configurar the paths
-        routesConfigurator.configureRoutes(app);
+        routesConfigurator.configureRoutes(app, sis);
 
         //the hookup thread
         Runtime.getRuntime().addShutdownHook(new Thread(app::stop));
