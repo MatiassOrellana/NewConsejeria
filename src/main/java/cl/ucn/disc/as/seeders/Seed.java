@@ -1,11 +1,14 @@
 package cl.ucn.disc.as.seeders;
 
 import cl.ucn.disc.as.Services.Sistema;
+import cl.ucn.disc.as.exceptions.IllegalDomainException;
 import cl.ucn.disc.as.model.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
+
+import java.io.IOException;
 
 @Slf4j
 @Getter
@@ -29,7 +32,8 @@ public class Seed {
     /**
      * Procedimeinto para construir a la persona llamando a builder similar al edificio
      */
-    public Persona PersonaBuilder(String rut, String nombre, String apellidos, String email, String telefono, Sistema sis){
+    public Persona PersonaBuilder(String rut, String nombre, String apellidos, String email, String telefono, Sistema sis)
+            throws IllegalDomainException, IOException, InterruptedException{
 
         Persona persona = Persona.builder().rut(rut).nombre(nombre).apellidos(apellidos).email(email).telefono(telefono).build();
 
@@ -84,7 +88,7 @@ public class Seed {
 
     }
 
-    public void LoadData(Sistema sistema){
+    public void LoadData(Sistema sistema) throws IllegalDomainException, IOException, InterruptedException {
 
         /*
          * agregar edificios

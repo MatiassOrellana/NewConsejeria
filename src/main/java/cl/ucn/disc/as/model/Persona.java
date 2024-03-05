@@ -4,6 +4,8 @@
 
 package cl.ucn.disc.as.model;
 
+import cl.ucn.disc.as.exceptions.IllegalDomainException;
+import cl.ucn.disc.as.validations.ValidationUtils;
 import io.ebean.annotation.NotNull;
 import lombok.*;
 
@@ -52,5 +54,38 @@ public class Persona extends BaseModel {
      */
     @NotNull
     private String telefono;
+
+    public static class PersonaBuilder {
+        /**
+         * @return persona
+         */
+        public Persona build() throws IllegalDomainException {
+
+            //Se agrego la validadcion del rut
+            //validate the rut
+            if (!ValidationUtils.isRutValid(this.rut)) {
+
+                //se debe noticar de esa excepcion
+                throw new IllegalDomainException("rut no valido: " + this.rut);
+                //esa excepcion lo creamos en la carpeta almacenada en exceptions
+                //y esa carpeta se creo manualmente
+
+            }
+            //validar correo electronico
+            if ((!ValidationUtils.isEmailValid(this.email))) {
+                throw new IllegalDomainException("Email no valido");
+                //tanto para email , como para rut
+            }
+
+            //Todo: Agregar resto de validaciones
+            return new Persona(
+                    this.rut,
+                    this.nombre,
+                    this.apellidos,
+                    this.email,
+                    this.telefono
+            );
+        }
+    }
 
 }

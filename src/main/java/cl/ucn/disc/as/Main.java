@@ -4,6 +4,7 @@ package cl.ucn.disc.as;
 import cl.ucn.disc.as.Services.Sistema;
 import cl.ucn.disc.as.Services.SistemaIMPL;
 import cl.ucn.disc.as.connectionSQL.DatabaseConnection;
+import cl.ucn.disc.as.exceptions.IllegalDomainException;
 import cl.ucn.disc.as.model.*;
 import cl.ucn.disc.as.seeders.Seed;
 import io.ebean.DB;
@@ -66,7 +67,7 @@ public class Main {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalDomainException, IOException, InterruptedException{
 
         log.debug("starting main...");
 
