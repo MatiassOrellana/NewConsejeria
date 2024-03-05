@@ -36,6 +36,25 @@ public class WebController implements RoutesConfigurator{
                 ctx.status(500).json(new ErrorResponse("Server Error", 500, "https://javalin.io/documentation#internalservererrorresponse", Collections.emptyMap()));
             }
         });
+
+        app.get("/personas", ctx -> {
+            try {
+                List<Persona> listaPersonas = sis.getPersonasByDB();
+
+                // Mapea la lista de personas a una lista de DTO (Data Transfer Object)
+                List<PersonaDTO> listaPersonasDTO = listaPersonas.stream()
+                        .map(persona -> new PersonaDTO(persona.getRut(), persona.getNombre(), persona.getApellidos()
+                                ,persona.getEmail(), persona.getTelefono()))
+                        .collect(Collectors.toList());
+
+                ctx.json(listaPersonasDTO);
+
+            } catch (Exception e) {
+                e.printStackTrace(); // Imprime la pila de llamadas en la consola
+                ctx.status(500).json(new ErrorResponse("Server Error", 500, "https://javalin.io/documentation#internalservererrorresponse", Collections.emptyMap()));
+            }
+        });
+
         // Agrega más rutas según sea necesario
     }
 }
