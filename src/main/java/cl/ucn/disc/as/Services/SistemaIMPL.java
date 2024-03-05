@@ -1,7 +1,9 @@
 package cl.ucn.disc.as.Services;
 
+import cl.ucn.disc.as.exceptions.SystemException;
 import cl.ucn.disc.as.model.*;
 import io.ebean.Database;
+import io.ebean.PersistenceIOException;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,62 +39,143 @@ public class SistemaIMPL implements Sistema{
 
     @Override
     public Edificio addEdificio(@NotNull Edificio edificio) {
-        this.database.save(edificio);
-        return edificio;
+
+        try{
+
+            this.database.save(edificio);
+            return edificio;
+
+
+        } catch (PersistenceIOException ex) {//el persistence ocurre en cualquier lenguaje
+
+            //Todo: save the exception
+            log.error("Error", ex);
+            //camino que no debe ocurrir nunca
+            throw new SystemException("error al agregar un edificio", ex);
+        }
     }
 
     @Override
     public Persona addPersona(@NotNull Persona persona) {
-        this.database.save(persona);
-        return persona;
+
+        try{
+
+            this.database.save(persona);
+            return persona;
+
+
+        } catch (PersistenceIOException ex) {//el persistence ocurre en cualquier lenguaje
+
+            //Todo: save the exception
+            log.error("Error", ex);
+            //camino que no debe ocurrir nunca
+            throw new SystemException("error al agregar una persona", ex);
+        }
     }
 
     @Override
     public Depto addDepto(@NotNull Depto departamento,@NotNull Long idEdificio) {
-        /**added vinculation with depto and edificio*/
-        departamento.setIDEdificio(idEdificio);
-        /**save in the database*/
-        this.database.save(departamento);
-        return departamento;
+
+        try{
+
+            /**added vinculation with depto and edificio*/
+            departamento.setIDEdificio(idEdificio);
+            /**save in the database*/
+            this.database.save(departamento);
+            return departamento;
+
+
+        } catch (PersistenceIOException ex) {//el persistence ocurre en cualquier lenguaje
+
+            //Todo: save the exception
+            log.error("Error", ex);
+            //camino que no debe ocurrir nunca
+            throw new SystemException("error al agregar un departamento", ex);
+        }
     }
 
     @Override
     public Depto addDepto(Depto departamento, Edificio edificio) {
-        /**added vinculation with depto and edificio*/
-        departamento.setIDEdificio(edificio.getId());
-        /**save in the database*/
-        this.database.save(departamento);
-        return departamento;
+
+        try{
+
+            /**added vinculation with depto and edificio*/
+            departamento.setIDEdificio(edificio.getId());
+            /**save in the database*/
+            this.database.save(departamento);
+            return departamento;
+
+
+        } catch (PersistenceIOException ex) {//el persistence ocurre en cualquier lenguaje
+
+            //Todo: save the exception
+            log.error("Error", ex);
+            //camino que no debe ocurrir nunca
+            throw new SystemException("error al agregar un departamento", ex);
+        }
     }
 
     @Override
     public Contrato addContrato(@NotNull Long dueñoID, @NotNull Long departamentoID, @NotNull Contrato contrato) {
-        /**added vinculation with depto and contrato*/
-        contrato.setDeptoID(departamentoID);
-        /**added vinculation with depto and dueño*/
-        contrato.setDueñoID(dueñoID);
-        /**save in the database*/
-        this.database.save(contrato);
-        return contrato;
+
+        try{
+
+            /**added vinculation with depto and contrato*/
+            contrato.setDeptoID(departamentoID);
+            /**added vinculation with depto and dueño*/
+            contrato.setDueñoID(dueñoID);
+            /**save in the database*/
+            this.database.save(contrato);
+            return contrato;
+
+
+        } catch (PersistenceIOException ex) {//el persistence ocurre en cualquier lenguaje
+
+            //Todo: save the exception
+            log.error("Error", ex);
+            //camino que no debe ocurrir nunca
+            throw new SystemException("error al agregar un contrato", ex);
+        }
     }
 
     @Override
     public Contrato addContrato(Persona dueño, Depto departamento, Contrato contrato) {
-        /**added vinculation with depto and contrato*/
-        contrato.setDeptoID(departamento.getId());
-        /**added vinculation with depto and dueño*/
-        contrato.setDueñoID(dueño.getId());
-        /**save in the database*/
-        this.database.save(contrato);
-        return contrato;
+
+        try{
+
+            /**added vinculation with depto and contrato*/
+            contrato.setDeptoID(departamento.getId());
+            /**added vinculation with depto and dueño*/
+            contrato.setDueñoID(dueño.getId());
+            /**save in the database*/
+            this.database.save(contrato);
+            return contrato;
+
+        } catch (PersistenceIOException ex) {//el persistence ocurre en cualquier lenguaje
+
+            //Todo: save the exception
+            log.error("Error", ex);
+            //camino que no debe ocurrir nunca
+            throw new SystemException("error al agregar un contrato", ex);
+        }
     }
 
     @Override
     public Pago addPago(@NotNull Pago pago, @NotNull Long contratoID) {
-        /**added vinculation with pago and contrato*/
-        pago.setContratoID(contratoID);
-        /**save in the database*/
-        this.database.save(pago);
-        return pago;
+        try{
+
+            /**added vinculation with pago and contrato*/
+            pago.setContratoID(contratoID);
+            /**save in the database*/
+            this.database.save(pago);
+            return pago;
+
+        } catch (PersistenceIOException ex) {//el persistence ocurre en cualquier lenguaje
+
+            //Todo: save the exception
+            log.error("Error", ex);
+            //camino que no debe ocurrir nunca
+            throw new SystemException("error al agregar un contrato", ex);
+        }
     }
 }

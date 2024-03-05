@@ -32,13 +32,18 @@ public class Seed {
     /**
      * Procedimeinto para construir a la persona llamando a builder similar al edificio
      */
-    public Persona PersonaBuilder(String rut, String nombre, String apellidos, String email, String telefono, Sistema sis)
-            throws IllegalDomainException, IOException, InterruptedException{
+    public Persona PersonaBuilder(String rut, String nombre, String apellidos, String email, String telefono, Sistema sis) {
 
-        Persona persona = Persona.builder().rut(rut).nombre(nombre).apellidos(apellidos).email(email).telefono(telefono).build();
+        try {
 
-        return sis.addPersona(persona);
+            Persona persona = Persona.builder().rut(rut).nombre(nombre).apellidos(apellidos).email(email).telefono(telefono).build();
 
+            return sis.addPersona(persona);
+
+        } catch (IllegalDomainException w){
+
+            return null;
+        }
     }
 
     /**
@@ -88,7 +93,7 @@ public class Seed {
 
     }
 
-    public void LoadData(Sistema sistema) throws IllegalDomainException, IOException, InterruptedException {
+    public void LoadData(Sistema sistema) {
 
         /*
          * agregar edificios

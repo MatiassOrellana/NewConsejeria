@@ -80,11 +80,18 @@ public class Main {
             // Lógica para ejecutar después de manejar cada solicitud
         });
 
-        app.get("/", ctx -> ctx.result("Hola chavo"));
-
         app.get("/personas", ctx -> {
             List<Persona> listaPersonas = obtenerListaPersonas();
             ctx.json(listaPersonas);
+        });
+
+        app.get("/salir", ctx -> {
+
+            log.debug("Stopping...");
+
+            app.stop();
+
+            log.debug("Done. ^^");
         });
 
         // Define tus rutas y manejadores aquí utilizando app.get(), app.post(), etc.
@@ -132,7 +139,7 @@ public class Main {
     }
 
 
-    public static void main(String[] args) throws IllegalDomainException, IOException, InterruptedException{
+    public static void main(String[] args){
 
         log.debug("starting main...");
 
@@ -156,12 +163,13 @@ public class Main {
         /**are as controllers*/
         Javalin app = start(2026, new WebController());
 
+        /**
         log.debug("Stopping...");
 
         app.stop();
 
         log.debug("Done. ^^");
-
+         */
     }
 
 }
