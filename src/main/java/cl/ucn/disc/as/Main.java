@@ -35,14 +35,13 @@ import java.util.List;
 //la hora, todo
 public class Main {
 
-
-
-
+    /**metodo donde hace el llamado a obtener a las personas donde procesa
+     * a las personas para desplegar la lista*/
     private static List<Persona> obtenerListaPersonas() {
         List<Persona> personas = new ArrayList<>();
 
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String sql = "SELECT rut,nombre,apellidos,email,telefono FROM persona";
+            String sql = "SELECT * FROM persona";
             try (PreparedStatement statement = connection.prepareStatement(sql);
                  ResultSet resultSet = statement.executeQuery()) {
 
@@ -53,7 +52,7 @@ public class Main {
                     String email = resultSet.getString("email");
                     String telefono = resultSet.getString("telefono");
 
-                    Persona newPersona = new Persona(rut,nombre,apellidos,email,telefono,null);
+                    Persona newPersona = new Persona(rut,nombre,apellidos,email,telefono);
 
                     personas.add(newPersona);
                 }
@@ -73,10 +72,10 @@ public class Main {
 
         Database db = DB.getDefault();//crea la base de datos
 
-        Sistema sistema = new SistemaIMPL(db);
+        Sistema sistema = new SistemaIMPL(db);//crea el sisteme
 
+        /**cargan los seeders*/
         Seed seeders = new Seed(sistema);
-
         seeders.LoadData(sistema);
 
         /**Esto apunta al puerto, es similar a los controladores de software donde utiliza un http y con esa
@@ -85,8 +84,6 @@ public class Main {
         /**are as controllers*/
         Javalin app = Javalin.create().start(2026);
         app.get("/", ctx -> ctx.result("Hola chavo"));
-
-
 
         app.get("/personas", ctx -> {
             List<Persona> listaPersonas = obtenerListaPersonas();

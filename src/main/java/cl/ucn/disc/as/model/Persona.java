@@ -53,10 +53,4 @@ public class Persona extends BaseModel {
     @NotNull
     private String telefono;
 
-    /**
-     * The Contrato
-     */
-    @NotNull
-    private List<Contrato> contratos;
-
 }
