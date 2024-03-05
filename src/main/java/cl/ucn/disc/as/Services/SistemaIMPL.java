@@ -178,4 +178,10 @@ public class SistemaIMPL implements Sistema{
             throw new SystemException("error al agregar un contrato", ex);
         }
     }
+
+    @Override
+    public List<Persona> getPersonasByDB() {
+        //TODO: Implement offset and max rows
+        return database.find(Persona.class).findList();
+    }
 }

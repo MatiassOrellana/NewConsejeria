@@ -50,6 +50,24 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "salir",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2026/salir",
+					"host": [
+						"localhost"
+					],
+					"port": "2026",
+					"path": [
+						"salir"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

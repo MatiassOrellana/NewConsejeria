@@ -4,6 +4,8 @@ package cl.ucn.disc.as;
 import cl.ucn.disc.as.Services.Sistema;
 import cl.ucn.disc.as.Services.SistemaIMPL;
 import cl.ucn.disc.as.connectionSQL.DatabaseConnection;
+import cl.ucn.disc.as.dto.PersonaDTO;
+import cl.ucn.disc.as.exceptions.ErrorResponse;
 import cl.ucn.disc.as.exceptions.IllegalDomainException;
 import cl.ucn.disc.as.model.*;
 import cl.ucn.disc.as.routes.RoutesConfigurator;
@@ -22,9 +24,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * The Main
@@ -40,35 +41,12 @@ public class Main {
 
     /**metodo donde hace el llamado a obtener a las personas donde procesa
      * a las personas para desplegar la lista*/
-    private static List<Persona> obtenerListaPersonas() {
-        List<Persona> personas = new ArrayList<>();
-
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            String sql = "SELECT * FROM persona";
-            try (PreparedStatement statement = connection.prepareStatement(sql);
-                 ResultSet resultSet = statement.executeQuery()) {
-
-                while (resultSet.next()) {
-                    String rut = resultSet.getString("rut");
-                    String nombre = resultSet.getString("nombre");
-                    String apellidos = resultSet.getString("apellidos");
-                    String email = resultSet.getString("email");
-                    String telefono = resultSet.getString("telefono");
-
-                    Persona newPersona = new Persona(rut,nombre,apellidos,email,telefono);
-
-                    personas.add(newPersona);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Manejo adecuado de las excepciones en un entorno real
-        }
-
+    private static List<Persona> obtenerListaPersonas(Sistema sis) {
+        List<Persona> personas = sis.getPersonasByDB();
         return personas;
     }
 
-    public static Javalin createAndConfigureJavalin() {
+    public static Javalin createAndConfigureJavalin(Sistema sis) {
         Javalin app = Javalin.create();
 
         // Configuraciones adicionales después de la creación de la instancia
@@ -81,8 +59,21 @@ public class Main {
         });
 
         app.get("/personas", ctx -> {
-            List<Persona> listaPersonas = obtenerListaPersonas();
-            ctx.json(listaPersonas);
+            try {
+                List<Persona> listaPersonas = sis.getPersonasByDB();
+
+                // Mapea la lista de personas a una lista de DTO (Data Transfer Object)
+                List<PersonaDTO> listaPersonasDTO = listaPersonas.stream()
+                        .map(persona -> new PersonaDTO(persona.getRut(), persona.getNombre(), persona.getApellidos()
+                        ,persona.getEmail(), persona.getTelefono()))
+                        .collect(Collectors.toList());
+
+                ctx.json(listaPersonasDTO);
+
+            } catch (Exception e) {
+                e.printStackTrace(); // Imprime la pila de llamadas en la consola
+                ctx.status(500).json(new ErrorResponse("Server Error", 500, "https://javalin.io/documentation#internalservererrorresponse", Collections.emptyMap()));
+            }
         });
 
         app.get("/salir", ctx -> {
@@ -99,7 +90,7 @@ public class Main {
         return app;
     }
 
-    public static Javalin start(final int port, final RoutesConfigurator routesConfigurator){
+    public static Javalin start(final int port, final RoutesConfigurator routesConfigurator, Sistema sis){
 
         if (port < 1024 || port > 65535){
 
@@ -110,7 +101,7 @@ public class Main {
         log.debug("Starting api rest server in port {} ..", port);
 
         //the server
-        Javalin app = createAndConfigureJavalin();
+        Javalin app = createAndConfigureJavalin(sis);
 
         //configurar the paths
         routesConfigurator.configureRoutes(app);
@@ -161,7 +152,7 @@ public class Main {
         log.debug("Beginning app...");
 
         /**are as controllers*/
-        Javalin app = start(2026, new WebController());
+        Javalin app = start(2026, new WebController(), sistema);
 
         /**
         log.debug("Stopping...");

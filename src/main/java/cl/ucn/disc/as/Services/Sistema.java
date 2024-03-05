@@ -62,6 +62,12 @@ public interface Sistema {
 
     public Pago addPago(Pago pago, Long contratoID);
 
+    /**
+     * metodo que devuelve la lista, eso si lombok no implementa este metodo get
+     * @return
+     */
+    public List<Persona> getPersonasByDB();
+
 }
 
 
