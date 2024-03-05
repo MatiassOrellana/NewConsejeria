@@ -6,6 +6,8 @@ import cl.ucn.disc.as.Services.SistemaIMPL;
 import cl.ucn.disc.as.connectionSQL.DatabaseConnection;
 import cl.ucn.disc.as.exceptions.IllegalDomainException;
 import cl.ucn.disc.as.model.*;
+import cl.ucn.disc.as.routes.RoutesConfigurator;
+import cl.ucn.disc.as.routes.WebController;
 import cl.ucn.disc.as.seeders.Seed;
 import io.ebean.DB;
 import io.ebean.Database;
@@ -66,10 +68,75 @@ public class Main {
         return personas;
     }
 
+    public static Javalin createAndConfigureJavalin() {
+        Javalin app = Javalin.create();
+
+        // Configuraciones adicionales después de la creación de la instancia
+        app.before(ctx -> {
+            // Lógica para ejecutar antes de manejar cada solicitud
+        });
+
+        app.after(ctx -> {
+            // Lógica para ejecutar después de manejar cada solicitud
+        });
+
+        app.get("/", ctx -> ctx.result("Hola chavo"));
+
+        app.get("/personas", ctx -> {
+            List<Persona> listaPersonas = obtenerListaPersonas();
+            ctx.json(listaPersonas);
+        });
+
+        // Define tus rutas y manejadores aquí utilizando app.get(), app.post(), etc.
+
+        return app;
+    }
+
+    public static Javalin start(final int port, final RoutesConfigurator routesConfigurator){
+
+        if (port < 1024 || port > 65535){
+
+            log.error("Bad port {}.", port);
+            throw new IllegalArgumentException("Bad port: " + port);
+
+        }
+        log.debug("Starting api rest server in port {} ..", port);
+
+        //the server
+        Javalin app = createAndConfigureJavalin();
+
+        //configurar the paths
+        routesConfigurator.configureRoutes(app);
+
+        //the hookup thread
+        Runtime.getRuntime().addShutdownHook(new Thread(app::stop));
+
+        //hooks to detect the shutdown
+        app.events(eventConfig -> {
+           eventConfig.serverStarting(() -> {
+               log.debug("Starting the javalin server ..");
+           });
+           eventConfig.serverStarted(() -> {
+               log.debug("Server started!");
+           });
+           eventConfig.serverStopping(() -> {
+               log.debug("Stopping the server ..");
+           });
+           eventConfig.serverStopped(() -> {
+               log.debug("Server stopped!");
+           });
+        });
+
+        //starting
+        return app.start(port);
+    }
+
 
     public static void main(String[] args) throws IllegalDomainException, IOException, InterruptedException{
 
         log.debug("starting main...");
+
+        log.debug("loading the database...");
 
         Database db = DB.getDefault();//crea la base de datos
 
@@ -79,17 +146,22 @@ public class Main {
         Seed seeders = new Seed(sistema);
         seeders.LoadData(sistema);
 
+        log.debug("loaded the database...");
+
         /**Esto apunta al puerto, es similar a los controladores de software donde utiliza un http y con esa
          * peticion obtiene el resultado*/
 
-        /**are as controllers*/
-        Javalin app = Javalin.create().start(2026);
-        app.get("/", ctx -> ctx.result("Hola chavo"));
+        log.debug("Beginning app...");
 
-        app.get("/personas", ctx -> {
-            List<Persona> listaPersonas = obtenerListaPersonas();
-            ctx.json(listaPersonas);
-        });
+        /**are as controllers*/
+        Javalin app = start(2026, new WebController());
+
+        log.debug("Stopping...");
+
+        app.stop();
+
+        log.debug("Done. ^^");
+
     }
 
 }

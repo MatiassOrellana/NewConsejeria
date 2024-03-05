@@ -6,6 +6,7 @@ package cl.ucn.disc.as.model;
 
 import cl.ucn.disc.as.exceptions.IllegalDomainException;
 import cl.ucn.disc.as.validations.ValidationUtils;
+import io.ebean.annotation.Cache;
 import io.ebean.annotation.NotNull;
 import lombok.*;
 
@@ -23,6 +24,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Cache(enableQueryCache = true, nearCache = true)
 public class Persona extends BaseModel {
 
     /**
