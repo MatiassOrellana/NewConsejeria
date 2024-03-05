@@ -39,13 +39,6 @@ import java.util.stream.Collectors;
 //la hora, todo
 public class Main {
 
-    /**metodo donde hace el llamado a obtener a las personas donde procesa
-     * a las personas para desplegar la lista*/
-    private static List<Persona> obtenerListaPersonas(Sistema sis) {
-        List<Persona> personas = sis.getPersonasByDB();
-        return personas;
-    }
-
     public static Javalin createAndConfigureJavalin(Sistema sis) {
         Javalin app = Javalin.create();
 
