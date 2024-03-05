@@ -3,7 +3,6 @@ package cl.ucn.disc.as;
 
 import cl.ucn.disc.as.Services.Sistema;
 import cl.ucn.disc.as.Services.SistemaIMPL;
-import cl.ucn.disc.as.connectionSQL.DatabaseConnection;
 import cl.ucn.disc.as.dto.PersonaDTO;
 import cl.ucn.disc.as.exceptions.ErrorResponse;
 import cl.ucn.disc.as.exceptions.IllegalDomainException;
