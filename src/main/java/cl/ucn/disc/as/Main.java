@@ -106,11 +106,11 @@ public class Main {
     }
 
 
-    private static List<Persona> obtenerListaPersonas(Sistema sis) {
+    private static List<Persona> obtenerListaPersonas() {
         List<Persona> personas = new ArrayList<>();
 
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String sql = "SELECT * FROM persona";
+            String sql = "SELECT rut,nombre,apellidos,email,telefono FROM persona";
             try (PreparedStatement statement = connection.prepareStatement(sql);
                  ResultSet resultSet = statement.executeQuery()) {
 
@@ -120,8 +120,10 @@ public class Main {
                     String apellidos = resultSet.getString("apellidos");
                     String email = resultSet.getString("email");
                     String telefono = resultSet.getString("telefono");
-                    personas.add(Persona.builder().rut(rut).nombre(nombre).apellidos(apellidos)
-                            .email(email).telefono(telefono).build());
+
+                    Persona newPersona = new Persona(rut,nombre,apellidos,email,telefono,null);
+
+                    personas.add(newPersona);
                 }
             }
         } catch (SQLException e) {
@@ -200,8 +202,10 @@ public class Main {
         Javalin app = Javalin.create().start(2026);
         app.get("/", ctx -> ctx.result("Hola chavo"));
 
+
+
         app.get("/personas", ctx -> {
-            List<Persona> listaPersonas = obtenerListaPersonas(sistema);
+            List<Persona> listaPersonas = obtenerListaPersonas();
             ctx.json(listaPersonas);
         });
 

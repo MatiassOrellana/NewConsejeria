@@ -10,9 +10,10 @@ import java.util.List;
 
 import lombok.*;
 
+
+@Slf4j
 @Getter
 @Setter
-@Slf4j
 public class SistemaIMPL implements Sistema{
 
     private List<Contrato> contratos;

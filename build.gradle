@@ -75,6 +75,12 @@ dependencies {
     //dataFaker
     implementation 'net.datafaker:datafaker:2.1.0'
 
+    //jackson core
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+
+    //jackson module
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.16.1'
+
 }
 
 ebean {
