@@ -6,9 +6,13 @@ import cl.ucn.disc.as.model.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import net.datafaker.Faker;
+import net.datafaker.service.FakeValuesService;
+import net.datafaker.service.RandomService;
 import org.joda.time.DateTime;
 
 import java.io.IOException;
+import java.util.Locale;
 
 @Slf4j
 @Getter
@@ -146,6 +150,11 @@ public class Seed {
          con ese parametro termina en .build
 
          */
+
+        //the faker
+        Locale locale = new Locale("es-CL");
+        FakeValuesService fvs = new FakeValuesService();
+        Faker faker = new Faker(locale);
     }
 
 }
