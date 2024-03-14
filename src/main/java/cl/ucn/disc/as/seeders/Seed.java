@@ -155,6 +155,18 @@ public class Seed {
         Locale locale = new Locale("es-CL");
         FakeValuesService fvs = new FakeValuesService();
         Faker faker = new Faker(locale);
+
+        //faker
+        for (int i = 0; i < 1000; i++){
+
+            Persona persona = Persona.builder().rut(fvs.bothify("########-#")).nombre(faker.name().firstName())
+                    .apellidos(faker.name().lastName()).email(fvs.bothify("????##@gmail.com"))
+                    .telefono(fvs.bothify("+569########")).build();
+
+
+            sistema.getDa
+
+        }
     }
 
 }

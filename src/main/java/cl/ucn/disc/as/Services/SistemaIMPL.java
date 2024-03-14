@@ -190,4 +190,9 @@ public class SistemaIMPL implements Sistema{
         //TODO: Implement offset and max rows
         return database.find(Depto.class).findList();
     }
+
+    @Override
+    public Database getDB() {
+        return database;
+    }
 }

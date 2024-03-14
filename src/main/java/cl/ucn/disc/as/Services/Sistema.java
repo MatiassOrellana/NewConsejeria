@@ -1,6 +1,7 @@
 package cl.ucn.disc.as.Services;
 
 import cl.ucn.disc.as.model.*;
+import io.ebean.Database;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
@@ -69,6 +70,8 @@ public interface Sistema {
     public List<Persona> getPersonasByDB();
 
     public List<Depto> getDeptosByDB();
+
+    public Database getDB();
 
 }
 

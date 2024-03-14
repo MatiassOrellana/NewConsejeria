@@ -110,6 +110,7 @@ public class Main {
 
         log.debug("Beginning app...");
 
+
         /**are as controllers*/
         Javalin app = start(2026, new WebController(), sistema);
 
