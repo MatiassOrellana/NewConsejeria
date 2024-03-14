@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
 import net.datafaker.service.FakeValuesService;
+import net.datafaker.service.FakerContext;
 import net.datafaker.service.RandomService;
 import org.joda.time.DateTime;
 
@@ -155,13 +156,14 @@ public class Seed {
         Locale locale = new Locale("es-CL");
         FakeValuesService fvs = new FakeValuesService();
         Faker faker = new Faker(locale);
+        FakerContext context = new FakerContext(locale, new RandomService());
 
         //faker
         for (int i = 0; i < 1000; i++){
 
-            Persona persona = Persona.builder().rut(faker.bothify("########-#")).nombre(faker.name().firstName())
-                        .apellidos(faker.name().lastName()).email(faker.bothify("????##@gmail.com"))
-                        .telefono(faker.bothify("+569########")).build();
+            Persona persona = Persona.builder().rut(fvs.bothify("########-#", context)).nombre(faker.name().firstName())
+                        .apellidos(faker.name().lastName()).email(fvs.bothify("????##@gmail.com", context))
+                        .telefono(fvs.bothify("+569########", context)).build();
 
 
             sistema.getDB().save(persona);
