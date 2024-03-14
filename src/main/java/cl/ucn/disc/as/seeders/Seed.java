@@ -97,7 +97,7 @@ public class Seed {
 
     }
 
-    public void LoadData(Sistema sistema) {
+    public void LoadData(Sistema sistema) throws IllegalDomainException {
 
         /*
          * agregar edificios
@@ -159,12 +159,16 @@ public class Seed {
         //faker
         for (int i = 0; i < 1000; i++){
 
-            Persona persona = Persona.builder().rut(fvs.bothify("########-#")).nombre(faker.name().firstName())
-                    .apellidos(faker.name().lastName()).email(fvs.bothify("????##@gmail.com"))
-                    .telefono(fvs.bothify("+569########")).build();
+            Persona persona = null;
+            try {
+                persona = Persona.builder().rut(faker.bothify("########-#")).nombre(faker.name().firstName())
+                        .apellidos(faker.name().lastName()).email(faker.bothify("????##@gmail.com"))
+                        .telefono(faker.bothify("+569########")).build();
+            } catch (IllegalDomainException e) {
+                throw new RuntimeException(e);
+            }
 
-
-            sistema.getDa
+            sistema.getDB().save(persona);
 
         }
     }
