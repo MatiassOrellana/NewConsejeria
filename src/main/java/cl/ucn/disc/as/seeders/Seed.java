@@ -98,7 +98,7 @@ public class Seed {
 
     }
 
-    public void LoadData(Sistema sistema) throws IllegalDomainException {
+    public void LoadData(Sistema sistema) {
 
         /*
          * agregar edificios
@@ -152,6 +152,7 @@ public class Seed {
 
          */
 
+
         //the faker
         Locale locale = new Locale("es-CL");
         FakeValuesService fvs = new FakeValuesService();
@@ -161,14 +162,48 @@ public class Seed {
         //faker
         for (int i = 0; i < 1000; i++){
 
-            Persona persona = Persona.builder().rut(fvs.bothify("########-#", context)).nombre(faker.name().firstName())
-                        .apellidos(faker.name().lastName()).email(fvs.bothify("????##@gmail.com", context))
-                        .telefono(fvs.bothify("+569########", context)).build();
+            // Generar un RUT chileno válido
+            String rut = generarRut();
+
+            Persona persona = null;
+            try {
+                persona = Persona.builder().rut(rut).nombre(faker.name().firstName())
+                            .apellidos(faker.name().lastName()).email(faker.bothify("????##@gmail.com"))
+                            .telefono(faker.bothify("+569########")).build();
+            } catch (IllegalDomainException e) {
+                throw new RuntimeException(e);
+            }
 
 
             sistema.getDB().save(persona);
 
         }
+
     }
+
+    // Método para generar un RUT chileno válido
+    public static String generarRut() {
+        Faker faker = new Faker();
+
+        // Generar los primeros 8 dígitos del RUT (sin el dígito verificador)
+        String rutSinDigitoVerificador = faker.regexify("\\d{8}");
+
+        // Calcular el dígito verificador
+        int[] multiplicadores = {3, 2, 7, 6, 5, 4, 3, 2};
+        int suma = 0;
+        for (int i = 0; i < rutSinDigitoVerificador.length(); i++) {
+            suma += Integer.parseInt(String.valueOf(rutSinDigitoVerificador.charAt(i))) * multiplicadores[i];
+        }
+        int digitoVerificador = 11 - (suma % 11);
+        String digitoVerificadorStr = (digitoVerificador == 11) ? "0" : (digitoVerificador == 10) ? "K" : String.valueOf(digitoVerificador);
+
+        // Construir el RUT completo
+        String rutCompleto = rutSinDigitoVerificador + "-" + digitoVerificadorStr;
+
+        return rutCompleto;
+    }
+
+
+
 
 }
