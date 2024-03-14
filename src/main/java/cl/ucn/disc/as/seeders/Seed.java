@@ -159,14 +159,10 @@ public class Seed {
         //faker
         for (int i = 0; i < 1000; i++){
 
-            Persona persona = null;
-            try {
-                persona = Persona.builder().rut(faker.bothify("########-#")).nombre(faker.name().firstName())
+            Persona persona = Persona.builder().rut(faker.bothify("########-#")).nombre(faker.name().firstName())
                         .apellidos(faker.name().lastName()).email(faker.bothify("????##@gmail.com"))
                         .telefono(faker.bothify("+569########")).build();
-            } catch (IllegalDomainException e) {
-                throw new RuntimeException(e);
-            }
+
 
             sistema.getDB().save(persona);
 

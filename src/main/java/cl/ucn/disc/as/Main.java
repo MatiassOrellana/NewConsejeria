@@ -3,6 +3,7 @@ package cl.ucn.disc.as;
 
 import cl.ucn.disc.as.Services.Sistema;
 import cl.ucn.disc.as.Services.SistemaIMPL;
+import cl.ucn.disc.as.exceptions.IllegalDomainException;
 import cl.ucn.disc.as.routes.RoutesConfigurator;
 import cl.ucn.disc.as.routes.WebController;
 import cl.ucn.disc.as.seeders.Seed;
@@ -89,7 +90,7 @@ public class Main {
     }
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IllegalDomainException {
 
         log.debug("starting main...");
 
